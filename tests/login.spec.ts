@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPages';
+import {LoginPage} from '../pages/LoginPage';
 import {InventoryPage} from '../pages/InventoryPage';
 
 //Login with valid credentials without using Page Object Model (POM)
