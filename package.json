@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "playwright test"
+    "bddgen": "bddgen",
+    "test": "bddgen && playwright test"
   },
   "repository": {
     "type": "git",
