@@ -1,9 +1,29 @@
 import {test, expect} from '@playwright/test';
+import {LoginPage} from '../pages/LoginPages';
+import {InventoryPage} from '../pages/InventoryPage';
 
-test('Login with valid credentials', async ({page}) => {
+//Login with valid credentials without using Page Object Model (POM)
+test('Login with valid credentials (Non-POM)', async ({page}) => {
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user');
     await page.getByPlaceholder('Password').fill('secret_sauce');
     await page.getByRole('button', {name: 'Login'}).click();
     await expect(page).toHaveURL(/inventory/);
+})
+
+//Login with valid credentials using Page Object Model (POM)
+test('Login with valid credentials (POM)', async ({page}) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
+    await expect(page).toHaveURL(InventoryPage.URL);
+})
+
+
+//Deliberatly fails to show failure artifacts in the report.
+test('Login with valid credentials (POM, Intentionally Fails)', async ({page}) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'wrong_password');
+    await expect(page).toHaveURL(InventoryPage.URL);
 })
