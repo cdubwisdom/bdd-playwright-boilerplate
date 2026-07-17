@@ -1,0 +1,24 @@
+{
+  "name": "bbd-playwright-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdubwisdom/bbd-playwright-boilerplate.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cdubwisdom/bbd-playwright-boilerplate/issues"
+  },
+  "homepage": "https://github.com/cdubwisdom/bbd-playwright-boilerplate#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "playwright-bdd": "^9.2.0",
+    "typescript": "^7.0.2"
+  }
+}
