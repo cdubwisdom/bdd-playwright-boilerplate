@@ -1,9 +1,16 @@
 import {defineConfig, devices} from '@playwright/test';
 import {defineBddConfig} from 'playwright-bdd';
 
-const bddTestDir = defineBddConfig({
-  features: './features/**/*.feature',
-  steps: ['./steps/**/*.ts', './fixtures/**/*.ts'],
+const saucedemoTestDir = defineBddConfig({
+  features: './features/saucedemo/**/*.feature',
+  steps: ['./steps/saucedemo/**/*.ts', './fixtures/**/*.ts'],
+  outputDir: '.features-gen/saucedemo',
+});
+
+const toolshopTestDir = defineBddConfig({
+  features: './features/toolshop/**/*.feature',
+  steps: ['./steps/toolshop/**/*.ts', './fixtures/**/*.ts'],
+  outputDir: '.features-gen/toolshop',
 });
 
 
@@ -22,8 +29,13 @@ export default defineConfig({
     },
     {
     name: 'bdd-playwright',
-    testDir: bddTestDir,
+    testDir: saucedemoTestDir,
     use: {...devices['Desktop Chrome']}
+    },
+    {
+    name: 'toolshop-bdd',
+    testDir: toolshopTestDir,
+    use: {...devices['Desktop Chrome'], baseURL: 'https://practicesoftwaretesting.com'}
     }
   ],
   reporter: [['list'], ['html', {open: 'never'}]],
