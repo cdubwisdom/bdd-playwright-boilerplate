@@ -7,7 +7,7 @@
  */
 export interface InventoryItem {
     name: string;
-    description: string;     // Numeric price, parsed from the displayed `$29.99` string. 
-    price: number; //The product image's `alt` text — the only assertable part of the image. 
-    imageAlt: string;
+    description: string;
+    price: number;      // Numeric price, parsed from the displayed `$29.99` string.
+    imageAlt: string;   // The product image's `alt` text — the only assertable part of the image.
 }

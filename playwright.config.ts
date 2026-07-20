@@ -13,9 +13,9 @@ const bddTestDir = defineBddConfig({
 export default defineConfig({
   timeout: 30 * 1000,
   use: {
-    baseURL: 'https://www.saucedemo.com',     // Recorded for every test, kept only for failures.
-    trace: 'retain-on-failure',     // saucedemo marks elements with data-test, not the default data-testid.
-    testIdAttribute: "data-test"
+    baseURL: 'https://www.saucedemo.com',
+    trace: 'retain-on-failure',    // Recorded for every test, kept only for failures.
+    testIdAttribute: "data-test"   // saucedemo marks elements with data-test, not the default data-testid.
   },
   projects: [
     {
