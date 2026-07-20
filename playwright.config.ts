@@ -25,5 +25,6 @@ export default defineConfig({
     testDir: bddTestDir,
     use: {...devices['Desktop Chrome']}
     }
-  ]
+  ],
+  reporter: [['list'], ['html', {open: 'never'}]],
 });
