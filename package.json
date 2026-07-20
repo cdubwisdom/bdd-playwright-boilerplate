@@ -6,7 +6,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "bddgen": "bddgen",
-    "test": "bddgen && playwright test"
+    "test": "bddgen && playwright test",
+    "test:ci": "bddgen && playwright test --grep-invert \"@failureExample\""
   },
   "repository": {
     "type": "git",
