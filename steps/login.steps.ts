@@ -1,21 +1,14 @@
-import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
+import { Given, Then, When } from '../fixtures/test';
 
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
-
-const { Given, When, Then } = createBdd();
-
-Given('User is on login page', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+Given('User is on login page', async ({ loginPage }) => {
     await loginPage.goto();
 });
 
-When("User logs in as {string} with password {string}", async ({ page }, username: string, password: string) => {
-    const loginPage = new LoginPage(page);
+When("User logs in as {string} with password {string}", async ({ loginPage }, username: string, password: string) => {
     await loginPage.login(username, password);
 });
 
-Then("User sees Inventory page", async ({ page }) => {
-    await expect(page).toHaveURL(InventoryPage.URL);
+Then("User sees Inventory page", async ({ inventoryPage, page }) => {
+    await expect(page).toHaveURL(inventoryPage.URL);
 });

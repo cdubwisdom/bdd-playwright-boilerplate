@@ -14,16 +14,18 @@ test('Login with valid credentials (Non-POM)', async ({page}) => {
 //Login with valid credentials using Page Object Model (POM)
 test('Login with valid credentials (POM)', async ({page}) => {
     const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
     await loginPage.goto();
     await loginPage.login('standard_user', 'secret_sauce');
-    await expect(page).toHaveURL(InventoryPage.URL);
+    await expect(page).toHaveURL(inventoryPage.URL);
 })
 
 
 //Deliberatly fails to show failure artifacts in the report.
 test('Login with valid credentials (POM, Intentionally Fails)', async ({page}) => {
     const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
     await loginPage.goto();
     await loginPage.login('standard_user', 'wrong_password');
-    await expect(page).toHaveURL(InventoryPage.URL);
+    await expect(page).toHaveURL(inventoryPage.URL);
 })
