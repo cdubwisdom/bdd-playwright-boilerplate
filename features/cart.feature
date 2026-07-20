@@ -5,9 +5,13 @@ Feature: User can view and add items to cart
         When User logs in as "standard_user" with password "secret_sauce"
         Then User sees Inventory page
 
-    Scenario: User sees correct item details
+    Scenario Outline: User sees correct item details
         When User sees the inventory list
-        Then User sees correct details for "Sauce Labs Backpack"
+        Then User sees correct details for <itemName>
+        Examples:
+            | itemName |
+            | "Sauce Labs Backpack" |
+            | "Sauce Labs Bike Light" |
 
     Scenario: User can add items to cart
         When User adds "Sauce Labs Backpack" to the cart
