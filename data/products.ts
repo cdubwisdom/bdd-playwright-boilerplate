@@ -1,4 +1,4 @@
-import { type InventoryItem } from '../models/InventoryItems';
+import { type InventoryItem } from '../models/InventoryItem';
 
 
 export const backpack: InventoryItem = {

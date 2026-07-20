@@ -11,7 +11,7 @@ export default defineConfig({
   timeout: 30 * 1000,
   use: {
     baseURL: 'https://www.saucedemo.com',
-    trace: 'on',
+    trace: 'retain-on-failure',
     testIdAttribute: "data-test"
   },
   projects: [
