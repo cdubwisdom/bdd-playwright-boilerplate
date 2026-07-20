@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
-import { backpack } from '../data/products';
+import { productsByName } from '../data/products';
 
 const { Given, When, Then } = createBdd();
 
@@ -30,5 +30,9 @@ Then("User sees the inventory list", async ({ page }) => {
 Then("User sees correct details for {string}", async ({ page }, itemName: string) => {
     const inventoryPage = new InventoryPage(page);
     const actualDetails = await inventoryPage.getInventoryItemDetails(itemName);
-    await expect(actualDetails).toEqual(backpack);
+    const expectedDetails = productsByName[itemName];
+    if (!expectedDetails) {
+        throw new Error(`No product data found for "${itemName}" in productsByName`);
+    }
+    expect(actualDetails).toEqual(expectedDetails);
 })
