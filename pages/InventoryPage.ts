@@ -1,5 +1,5 @@
 import {type Page, type Locator} from '@playwright/test';
-import { InventoryItem } from '../models/InventoryItems';
+import { InventoryItem } from '../models/InventoryItem';
 
 export class InventoryPage {
     readonly page: Page;
