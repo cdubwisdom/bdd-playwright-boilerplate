@@ -5,7 +5,7 @@ export class InventoryPage {
     readonly page: Page;
     readonly cartBadge: Locator;
     readonly inventoryList: Locator;
-    static readonly URL = /inventory\.htm/;
+    readonly URL = /inventory\.htm/;
 
     constructor(page: Page) {
         this.page = page;
