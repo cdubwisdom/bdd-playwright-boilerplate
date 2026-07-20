@@ -1,3 +1,4 @@
+@inventory
 Feature: User can view and add items to cart
 
     Background:
@@ -5,15 +6,22 @@ Feature: User can view and add items to cart
         When User logs in as "standard_user" with password "secret_sauce"
         Then User sees Inventory page
 
-    Scenario: User sees correct item details
+    @itemDetails
+    Scenario Outline: User sees correct item details
         When User sees the inventory list
-        Then User sees correct details for "Sauce Labs Backpack"
+        Then User sees correct details for <itemName>
+        Examples:
+            | itemName |
+            | "Sauce Labs Backpack" |
+            | "Sauce Labs Bike Light" |
 
+    @cart
     Scenario: User can add items to cart
         When User adds "Sauce Labs Backpack" to the cart
         And User adds "Sauce Labs Bike Light" to the cart
         Then User sees "2" items in the cart
 
+    @cart
     Scenario: User can remove items from cart
         When User adds "Sauce Labs Backpack" to the cart
         And User adds "Sauce Labs Bike Light" to the cart

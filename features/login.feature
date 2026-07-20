@@ -1,3 +1,4 @@
+@login
 Feature: Login
 
     Background:
@@ -7,6 +8,7 @@ Feature: Login
         When User logs in as "standard_user" with password "secret_sauce"
         Then User sees Inventory page
 
+    @failureExample
     Scenario: User with standard role can Login (Intentionally Fails)
         When User logs in as "standard_user" with password "wrong_password"
         Then User sees Inventory page

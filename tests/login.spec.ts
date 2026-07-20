@@ -22,7 +22,7 @@ test('Login with valid credentials (POM)', async ({page}) => {
 
 
 //Deliberatly fails to show failure artifacts in the report.
-test('Login with valid credentials (POM, Intentionally Fails)', async ({page}) => {
+test('Login with valid credentials (POM, Intentionally Fails)', { tag: '@failureExample' }, async ({page}) => {
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
     await loginPage.goto();
