@@ -1,3 +1,9 @@
+/**
+ * Expected product data for assertions, mirroring what saucedemo renders.
+ *
+ * Add a new product here and register it in {@link productsByName} to make it
+ * usable from a feature file.
+ */
 import { type InventoryItem } from '../models/InventoryItem';
 
 
@@ -15,6 +21,13 @@ export const bikeLight: InventoryItem = {
     imageAlt: 'Sauce Labs Bike Light',
 };
 
+/**
+ * Lookup from product name to its expected data, so a step definition can
+ * resolve whatever product name a scenario passes it.
+ *
+ * Keys are computed from each product's own `name` field rather than typed as
+ * literals, so a key can never drift out of sync with the data it points at.
+ */
 export const productsByName: Record<string, InventoryItem> = {
     [backpack.name]: backpack,
     [bikeLight.name]: bikeLight
