@@ -21,7 +21,8 @@ test('Login with valid credentials (POM)', async ({page}) => {
 })
 
 
-//Deliberatly fails to show failure artifacts in the report.
+//Deliberately fails to show failure artifacts in the report.
+//Tagged @failureExample so `npm run test:ci` can exclude it.
 test('Login with valid credentials (POM, Intentionally Fails)', { tag: '@failureExample' }, async ({page}) => {
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
