@@ -2,6 +2,7 @@ export interface Product {
     id: string;
     name: string;
     description: string;
+    co2_rating: string;
     price: number;
     in_stock: boolean;
     category: Category;
