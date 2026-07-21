@@ -4,9 +4,6 @@ import {defineBddConfig} from 'playwright-bdd';
 // Generates Playwright specs from the .feature files into .features-gen/.
 // `steps` must include fixtures/ so bddgen can find the extended `test` object;
 // without it, generation fails with "Can't guess test instance".
-const bddTestDir = defineBddConfig({
-  features: './features/**/*.feature',
-  steps: ['./steps/**/*.ts', './fixtures/**/*.ts'],
 const saucedemoTestDir = defineBddConfig({
   features: './features/saucedemo/**/*.feature',
   steps: ['./steps/saucedemo/**/*.ts', './fixtures/**/*.ts'],
@@ -26,7 +23,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.saucedemo.com',
     trace: 'retain-on-failure',    // Recorded for every test, kept only for failures.
-    testIdAttribute: "data-test"   // saucedemo marks elements with data-test, not the default data-testid.
+    testIdAttribute: "data-test"   // Both apps mark elements with data-test, not the default data-testid.
   },
   projects: [
     {
