@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPage';
-import {InventoryPage} from '../pages/InventoryPage';
+import {LoginPage} from '../pages/saucedemo/LoginPage';
+import {InventoryPage} from '../pages/saucedemo/InventoryPage';
 
 //Login with valid credentials without using Page Object Model (POM)
 test('Login with valid credentials (Non-POM)', async ({page}) => {

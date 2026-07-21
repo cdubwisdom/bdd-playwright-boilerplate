@@ -1,9 +1,9 @@
 // Step definitions for features/cart.feature.
 // Given/When/Then come from the fixtures file so page objects can be injected.
 import { expect } from '@playwright/test';
-import { Given, Then, When } from '../fixtures/test';
+import { Given, Then, When } from '../../fixtures/test';
 
-import { productsByName } from '../data/products';
+import { productsByName } from '../../data/saucedemo/products';
 
 When("User adds {string} to the cart", async ({ inventoryPage }, itemName: string) => {
     await inventoryPage.addItemToCart(itemName);

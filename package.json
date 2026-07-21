@@ -7,7 +7,9 @@
     "typecheck": "tsc --noEmit",
     "bddgen": "bddgen",
     "test": "bddgen && playwright test",
-    "test:ci": "bddgen && playwright test --grep-invert \"@failureExample\""
+    "test:ci": "bddgen && playwright test --grep-invert \"@failureExample\"",
+    "test:toolshop": "bddgen && playwright test --project=toolshop-bdd",
+    "test:saucedemo": "bddgen && playwright test --project=bdd-playwright"
   },
   "repository": {
     "type": "git",

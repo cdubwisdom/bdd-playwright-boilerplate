@@ -4,7 +4,7 @@
  * Add a new product here and register it in {@link productsByName} to make it
  * usable from a feature file.
  */
-import { type InventoryItem } from '../models/InventoryItem';
+import { type InventoryItem } from '../../models/saucedemo/InventoryItem';
 
 
 export const backpack: InventoryItem = {

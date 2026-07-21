@@ -18,7 +18,7 @@ jobs:
             - run: npm run test:ci
             - name: Set report name
               if: always()
-              run: echo "REPORT_NAME=saucedemo-report-${{ github.run_number }}-$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_ENV"
+              run: echo "REPORT_NAME=playwright-report-${{ github.run_number }}-$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_ENV"
             - name: Zip HTML report
               if: always()
               run: if [ -d playwright-report ]; then zip -r "${{ env.REPORT_NAME }}.zip" playwright-report; fi
