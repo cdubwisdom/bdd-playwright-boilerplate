@@ -4,9 +4,11 @@ import { type Product } from '../../models/toolshop/Product';
 
 export class ProductListPage {
     readonly page: Page;
+    readonly productCardNames: Locator
 
     constructor(page: Page) {
         this.page = page;
+        this.productCardNames = page.getByTestId('product-name');
     }
 
     getProductCard(productId: string): Locator {

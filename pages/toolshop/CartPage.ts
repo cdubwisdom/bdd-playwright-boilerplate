@@ -11,14 +11,16 @@ export type DisplayedCart = Pick<Cart, 'id'>
 export class CartPage {
     readonly page: Page;
     readonly cartTotalPrice: Locator;
+    readonly cartLineItems: Locator;
 
     constructor(page: Page){
         this.page = page;
         this.cartTotalPrice = page.getByTestId('cart-total');
+        this.cartLineItems = page.locator('tbody tr');
     }
 
     getCartLineItem(productName: string): Locator {
-        return this.page.locator('tbody tr').filter({
+        return this.cartLineItems.filter({
             has: this.page.getByTestId('product-title').filter( 
                 { hasText: new RegExp(`^${productName}$`) }
                 )
@@ -41,6 +43,10 @@ export class CartPage {
         return lineItem.getByTestId('product-title');
     }
 
+    async goto() {
+        await this.page.goto(`/checkout`);
+    }
+
     async getCartId(): Promise<string> {
         const cartId = await this.page.evaluate(() => localStorage.getItem('cart_id'));
 
@@ -53,7 +59,7 @@ export class CartPage {
 
 
     async getDisplayedItems(): Promise<DisplayedCartItem[]> {
-        const rows = await this.page.locator('tbody tr').all();
+        const rows = await this.cartLineItems.all();
         const items: DisplayedCartItem[] = [];
 
         for (const row of rows) {
@@ -71,11 +77,15 @@ export class CartPage {
 
     async scrapeCart(): Promise<DisplayedCart> {
         const displayedCart = {
-            id: (await this.getCartId()).trim(),
+            id: await this.getCartId(),
             cart_items: await this.getDisplayedItems()
         }
 
         return displayedCart
+    }
+
+    async getCartTotalPrice(): Promise<number> {
+        return Number(await this.cartTotalPrice.innerText());
     }
     
 
