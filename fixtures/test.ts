@@ -1,6 +1,6 @@
 import { test as base, createBdd } from 'playwright-bdd';
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
+import { LoginPage } from '../pages/saucedemo/LoginPage';
+import { InventoryPage } from '../pages/saucedemo/InventoryPage';
 import { request } from '@playwright/test'
 import { ToolshopAPI } from '../api/ToolshopAPI';
 

@@ -1,7 +1,7 @@
 import { type APIResponse, type APIRequestContext } from '@playwright/test';
-import { type Paginated } from '../models/Paginated';
-import { type Product } from '../models/Product'
-import { type Cart } from '../models/Cart';
+import { type Paginated } from '../models/toolshop/Paginated';
+import { type Product } from '../models/toolshop/Product'
+import { type Cart } from '../models/toolshop/Cart';
 
 export class ToolshopAPI {
     readonly request: APIRequestContext;
