@@ -1,5 +1,6 @@
 import { type Page, type Locator } from '@playwright/test';
 import { type Brand, type Category, type Product } from '../../models/toolshop/Product';
+import { parsePrice } from '../../util/price'
 
 export type DisplayedProduct = Pick<Product, 'name' | 'description' | 'price' | 'co2_rating' | 'in_stock'>
     & {category: Pick<Category, 'name'>; brand: Pick<Brand, 'name'>};
@@ -47,7 +48,7 @@ export class ProductDetailsPage {
             name: (await this.productName.innerText()).trim(),
             description: (await this.productDescription.innerText()).trim(),
             co2_rating: (await this.co2Rating.innerText()).trim(),
-            price: Number(await this.productPrice.innerText()),
+            price: parsePrice(await this.productPrice.innerText()),
             in_stock: (await this.outOfStockTag.count() === 0),
             category: { name: (await this.productCategory.innerText()).trim() },
             brand: { name: (await this.productBrand.innerText()).trim() }
@@ -74,8 +75,9 @@ export class ProductDetailsPage {
         return await this.getCurrentQty();
     }
 
-    async addToCart() {
+    async addProductToCart() {
         await this.addToCartButton.click();
+        await this.cartBadge.waitFor({ state: 'visible' })
     }
 
     async openCart() {

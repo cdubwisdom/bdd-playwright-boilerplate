@@ -1,6 +1,7 @@
 import { type Page, type Locator } from '@playwright/test';
 import { type Cart, type CartItem } from '../../models/toolshop/Cart';
-import type { Product } from '../../models/toolshop/Product';
+import { type Product } from '../../models/toolshop/Product';
+import { parsePrice } from '../../util/price'
 
 export type DisplayedCartItem = Pick<CartItem, 'quantity'>
   & { product: Pick<Product, 'name' | 'price'> };
@@ -48,7 +49,7 @@ export class CartPage {
     }
 
     async getCartId(): Promise<string> {
-        const cartId = await this.page.evaluate(() => localStorage.getItem('cart_id'));
+        const cartId = await this.page.evaluate(() => sessionStorage.getItem('cart_id'));
 
         if (!cartId) {
             throw new Error('cart_id not found in local storage - was an item added to the cart?')
@@ -67,7 +68,7 @@ export class CartPage {
             quantity: Number(await this.getCartItemQty(row).inputValue()),
             product: {
                 name: (await this.getCartItemName(row).innerText()).trim(),
-                price: Number(await this.getCartItemUnitPrice(row).innerText()),
+                price: parsePrice(await this.getCartItemUnitPrice(row).innerText()),
             },
             });
         }
@@ -85,7 +86,7 @@ export class CartPage {
     }
 
     async getCartTotalPrice(): Promise<number> {
-        return Number(await this.cartTotalPrice.innerText());
+        return parsePrice(await this.cartTotalPrice.innerText());
     }
     
 
