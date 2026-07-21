@@ -16,6 +16,7 @@ const toolshopTestDir = defineBddConfig({
 
 export default defineConfig({
   timeout: 30 * 1000,
+  retries: process.env.CI ? 2 : 0,
   use: {
     baseURL: 'https://www.saucedemo.com',
     trace: 'retain-on-failure',
